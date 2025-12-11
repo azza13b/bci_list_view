@@ -1,0 +1,418 @@
+<template>
+<div class="slds-card">
+    <template if:true={initialLoading}>
+            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+    </template>
+    <template if:false={initialLoading}>
+        <div class="slds-grid slds-grid_vertical slds-box slds-p-around_none">
+
+            <div class="slds-grid slds-grid_align-spread slds-p-around_small slds-theme_shade  slds-border_bottom">
+                <!-- Title -->
+
+                <div class="slds-media slds-media_center slds-align-middle">
+                    <div class="slds-media__figure">
+                        <lightning-icon 
+                            icon-name="standard:quip_sheet" 
+                            alternative-text="App Icon" 
+                            size="medium" >
+                        </lightning-icon>
+                    </div>
+                    <div class="slds-media__body">
+                        <h1 class="slds-page-header__title slds-truncate" title="BCI Marketing Tool">
+                            BCI Marketing Tool
+                        </h1>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div>
+
+                    <div class="slds-grid lds-align-middle slds-m-bottom_x-small">
+                        
+                        <!-- Radio Group -->
+                        <div class="slds-col slds-m-right_xx-small" >
+                            <lightning-radio-group
+                                name="radioGroup"
+                                    variant="label-hidden"
+                                options={groupOptions}
+                                data-field="isFollowing"
+                                value={groupValue}
+                                onchange={handleGroupChange}
+                                type="button">
+                            </lightning-radio-group>
+                        </div>
+                        <!-- Button -->
+                        <div class="slds-col slds-m-right_xx-small">
+                            <lightning-button
+                                label="BCI Map View"
+                                onclick={navigateToBciMap}
+                                variant="neutral">
+                            </lightning-button>
+                        </div>
+
+                        <lightning-button-menu 
+                            icon-name="utility:settings"
+                            title="List View Controls"
+                            class="slds-m-right_xx-small"
+                            menu-alignment="right"
+                            onselect={handleMenuSelect}>
+                            <lightning-menu-item value="resetWidths" label="Reset Column Widths"></lightning-menu-item>
+                        </lightning-button-menu>
+
+                        <lightning-button-icon 
+                            icon-name="utility:refresh" 
+                            onclick={handleRefresh}>
+                        </lightning-button-icon>
+
+                    </div>
+                    <!--
+                    <div style="text-align: right;">
+                        <lightning-button-group>
+                            <lightning-button-icon 
+                                icon-name="utility:refresh" 
+                                onclick={handleRefresh}>
+                            </lightning-button-icon>
+
+                            <lightning-button-icon 
+                                icon-name="utility:filterList" 
+                                onclick={handleFilter}>
+                            </lightning-button-icon>
+
+                        </lightning-button-group>
+                    </div>
+                    -->
+                </div>
+            </div>
+
+
+            <div class="slds-grid slds-gutters slds-p-around_small slds-p-top_none slds-p-bottom_none" style="max-height: 80vh;">    
+                <template if:true={showFilterPanel}>
+                    <div style="width: 350px;" class="slds-col slds-no-flex slds-box slds-theme_default slds-grid slds-grid_vertical slds-grid_align-spread slds-p-around_none">
+                        <div class="slds-m-around_medium slds-p-around_small slds-p-top_none" style="max-height: 80%; overflow-y: auto;">
+                            <h2 class="slds-text-heading_small slds-m-bottom_small">Filters</h2>
+
+<!--
+                            <div class="slds-m-top_medium">
+                                <label class="slds-text-title_bold">Last Updated</label>
+
+                                <div class="slds-grid slds-gutters">
+                                    <div class="slds-col">
+                                        <lightning-input 
+                                            label="Start"
+                                            type="date"
+                                            data-field="Start_Date"
+                                            value={filterValues.Start_Date}
+                                            onchange={handleFilterChange}>
+                                        </lightning-input>
+                                    </div>
+                                    <div class="slds-col">
+                                        <lightning-input 
+                                            label="End"
+                                            type="date"
+                                            data-field="End_Date"
+                                            value={filterValues.End_Date}
+                                            message-when-error={endDateError}
+                                            onchange={handleFilterChange}>
+                                        </lightning-input>
+                                    </div>
+                                </div>
+                            </div>
+-->
+                            <lightning-combobox
+                                    data-field="LastUpdated"
+                                    label="Last Updated"
+                                    value={filterValues.LastUpdated}
+                                    options={lastUpdatedOptions}
+                                    onkeydown={handleEnterKeyPress}
+                                    onchange={handleFilterChange} ></lightning-combobox>
+
+                            <lightning-input 
+                                label="Developer" 
+                                data-field="Developer"
+                                value={filterValues.Developer}
+                                onkeydown={handleEnterKeyPress}
+                                onchange={handleFilterChange}>
+                            </lightning-input>
+
+
+
+
+                            <lightning-combobox
+                                    data-field="State"
+                                    label="State"
+                                    value={filterValues.State}
+                                    options={stateOptions}
+                                    onkeydown={handleEnterKeyPress}
+                                    onchange={handleFilterChange} ></lightning-combobox>
+                            <!--
+                            <lightning-input 
+                                label="State" 
+                                data-field="State"
+                                value={filterValues.State}
+                                onkeydown={handleEnterKeyPress}
+                                onchange={handleFilterChange}>
+                            </lightning-input>
+                            -->
+
+
+
+                            <div class="slds-m-top_x-small checkbox-wrapper">
+                                <label class="slds-checkbox">
+                                    <input
+                                        type="checkbox"
+                                        checked={filterValues.HideViewedProjects}
+                                        onchange={handleHideViewedCheckboxChange}
+                                    />
+
+                                    <span class="slds-checkbox_faux"></span>
+
+                                    <span class="slds-form-element__label label-with-icon">
+                                        Hide Viewed Projects
+                                        <lightning-icon
+                                            icon-name="utility:hide"
+                                            size="x-small"
+                                            class="icon-left"
+                                        ></lightning-icon>
+                                    </span>
+                                </label>
+                            </div>
+
+                            <div>
+                                <label class="slds-text-title_bold">Category</label>
+                                <template for:each={visiblecategoryOptions} for:item="option">
+                                    <lightning-input
+                                        type="checkbox"
+                                        label={option.label}
+                                        value={option.value}
+                                        checked={option.isChecked}
+                                        onchange={handleCategoryCheckboxChange}
+                                        onkeydown={handleEnterKeyPress}
+                                        data-field="Cat_1_Name"
+                                        key={option.value}>
+                                    </lightning-input>
+                                </template>
+                                <lightning-button
+                                    label="Show More"
+                                    variant="base"
+                                    onclick={toggleCategoryShowMoreModal}
+                                    >
+                                </lightning-button>
+                            </div>
+
+                            <label class="slds-text-title_bold">Project Stage</label>
+                            <template for:each={projectStageOptions} for:item="option">
+                                <lightning-input
+                                    type="checkbox"
+                                    label={option.label}
+                                    value={option.value}
+                                    checked={option.isChecked}
+                                    onkeydown={handleEnterKeyPress}
+                                    onchange={handleProjectStageCheckboxChange}
+                                    data-field="Project_Stage"
+                                    key={option.value}>
+                                </lightning-input>
+                            </template>
+
+                            <div>
+                                <label class="slds-text-title_bold">Council</label>
+                                <template for:each={visiblecouncilOptions} for:item="option">
+                                    <lightning-input
+                                        type="checkbox"
+                                        label={option.label}
+                                        value={option.value}
+                                        checked={option.isChecked}
+                                        onkeydown={handleEnterKeyPress}
+                                        onchange={handleCouncilCheckboxChange}
+                                        data-field="Council"
+                                        key={option.value}>
+                                    </lightning-input>
+                                </template>
+                                <lightning-button
+                                    label="Show More"
+                                    variant="base"
+                                    onclick={toggleCouncilShowMoreModal}
+                                    class="slds-m-top_small">
+                                </lightning-button>
+                            </div>
+
+                            <div>
+                                <label class="slds-text-title_bold">Country</label>
+                                <template for:each={countryOptions} for:item="country">
+                                    <lightning-input
+                                        type="checkbox"
+                                        label={country.label}
+                                        value={country.value}
+                                        checked={country.isChecked}
+                                        onchange={handleCountryCheckboxChange}
+                                        onkeydown={handleEnterKeyPress}
+                                        data-field="country"
+                                        key={country.value}>
+                                    </lightning-input>
+                                </template>
+                            </div>
+
+                        </div>
+
+                        <div class="slds-theme_shade slds-p-around_medium" style="height: 20%;">
+                            <div class="slds-grid slds-grid_align-end">
+                                <lightning-button 
+                                    label="Clear"
+                                    onclick={handleCancelFilter}
+                                    class="slds-m-right_small">
+                                </lightning-button>
+                                
+                                <lightning-button 
+                                    label="Apply"
+                                    variant="brand" 
+                                    onclick={handleApplyFilter}>
+                                </lightning-button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </template>
+
+                <div class="slds-col slds-no-space slds-p-around_none">
+                    <template if:true={isLoading}>
+                            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                    </template>
+
+<!--
+                    <c-my-custom-type-datatable
+                        style="height: 100%;"
+                        key-field="Id"
+                        data={bciProjects}
+                        hide-checkbox-column
+                        columns={columns}
+                        enable-infinite-loading
+                        show-row-number-column
+                        onloadmore={loadMoreData}
+                        sorted-by={sortBy}
+                        sorted-direction={sortDirection}
+                        onsort={doSorting}>
+                    </c-my-custom-type-datatable>
+
+
+                    <template if:false={bciProjects}>
+                        <div class="slds-var-m-around_small slds-text-align_center">
+                            <p>No items to display.</p>
+                        </div>
+                    </template>
+-->
+
+
+                    <div class="slds-grid slds-grid_vertical" style="height: 100%;  ">
+
+                        <div style="flex: 1 1 auto; overflow-y: auto;" >
+                            <c-my-custom-type-datatable
+                                key-field="Id"
+                                data={bciProjects}
+                                hide-checkbox-column
+                                columns={columns}
+                                enable-infinite-loading
+                                
+                                onloadmore={loadMoreData}
+                                sorted-by={sortBy}
+                                sorted-direction={sortDirection}
+                                onclick={handleClick}
+                                onsort={doSorting}>
+                            </c-my-custom-type-datatable>
+                        </div>
+                        <template if:false={hasData}>
+                            <div class=" slds-text-align_center slds-p-around_none slds-theme_shade" style="margin-top: auto; padding-bottom: 4px;">
+                                <p>No items to display.</p>
+                            </div>
+                        </template>
+                    <template if:true={isLoading}>
+                            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                    </template>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </template>
+    <template if:true={showCategoryModal}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h2 class="slds-text-heading_medium">Select Project Types</h2>
+                </header>
+
+                <div class="slds-modal__content slds-p-around_small">
+                    <lightning-dual-listbox
+                        name="projectType"
+                        label="Project Type"
+                        source-label="Available"
+                        selected-label="Selected"
+                        data-field="Cat_1_Name"
+                        options={categoryOptions}
+                        value={filterValues.Cat_1_Name}
+                        onchange={handleFilterChange}
+                        class="">
+                    </lightning-dual-listbox>
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning-button variant="brand" label="Done" onclick={toggleCategoryShowMoreModal}></lightning-button>
+                </footer>
+            </div>
+        </section>
+
+        <!-- Modal Overlay -->
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+    <template if:true={showCouncilModal}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h2 class="slds-text-heading_medium">Select Council</h2>
+                </header>
+
+                <div class="slds-modal__content slds-p-around_small">
+                    <lightning-dual-listbox
+                        name="Council"
+                        label="Council"
+                        source-label="Available"
+                        selected-label="Selected"
+                        data-field="Council"
+                        options={councilOptions}
+                        value={filterValues.Council}
+                        onchange={handleFilterChange}
+                        class="">
+                    </lightning-dual-listbox>
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning-button variant="brand" label="Done" onclick={toggleCouncilShowMoreModal}></lightning-button>
+                </footer>
+            </div>
+        </section>
+
+        <!-- Modal Overlay -->
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+    <template if:true={isBciMapModalOpen}>
+        <section class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container" style="max-width: 90%; width: 90%;">
+                
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={navigateToBciMap}>
+                    <lightning-icon icon-name="utility:close" alternative-text="Close" size="small"></lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+                
+                <div class="slds-modal__content" style="height: 90vh">
+                    <iframe src="https://projects-map.stamfordcapital.app/" width="100%" height="100%" frameborder="0"></iframe>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</div>
+
+
+</template>
