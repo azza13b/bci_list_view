@@ -554,12 +554,18 @@
     border-radius: var(--bci-radius-md);
     border: 1px solid var(--bci-gray-200);
     box-shadow: var(--bci-shadow-sm);
+    display: flex;
+    flex-direction: column;
 }
 
 /* Style the datatable */
 .bci-table-wrapper c-my-custom-type-datatable,
 .bci-table-wrapper lightning-datatable {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
 }
 
 /* Round the corners of the table */
