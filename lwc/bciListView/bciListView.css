@@ -343,7 +343,7 @@
    Filter Panel
    ============================================ */
 .bci-filter-panel {
-    width: 320px;
+    width: 340px;
     flex-shrink: 0;
     background: var(--bci-surface);
     border-right: 1px solid var(--bci-gray-200);
