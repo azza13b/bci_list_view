@@ -65,21 +65,17 @@
                         <span>Map View</span>
                     </button>
 
-                    <!-- Settings Menu -->
-                    <div class="bci-settings-menu">
-                        <lightning-button-menu
-                            icon-name="utility:settings"
-                            alternative-text="Settings"
-                            menu-alignment="right"
-                            variant="border"
-                            onselect={handleMenuSelect}>
-                            <lightning-menu-item value="resetWidths" label="Reset Column Widths"></lightning-menu-item>
-                        </lightning-button-menu>
-                    </div>
-
                     <!-- Refresh Button -->
                     <button class="bci-icon-btn" onclick={handleRefresh} title="Refresh">
                         <lightning-icon icon-name="utility:refresh" size="x-small" alternative-text="Refresh"></lightning-icon>
+                    </button>
+
+                    <div class="bci-stats-divider"></div>
+
+                    <!-- Reset Column Widths Button -->
+                    <button class="bci-action-btn" onclick={handleResetColumnWidths} title="Reset Column Widths">
+                        <lightning-icon icon-name="utility:table_settings" size="x-small" alternative-text="Reset"></lightning-icon>
+                        <span>Reset Widths</span>
                     </button>
                 </div>
             </div>

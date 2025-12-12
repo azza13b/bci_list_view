@@ -261,21 +261,6 @@
     color: var(--bci-gray-800);
 }
 
-/* Style the settings button menu to match other buttons */
-.bci-settings-menu {
-    display: inline-flex;
-}
-
-.bci-settings-menu lightning-button-menu {
-    --slds-c-button-color-background: var(--bci-surface);
-    --slds-c-button-color-border: var(--bci-gray-300);
-    --slds-c-button-radius-border: var(--bci-radius-md);
-    --slds-c-button-color-background-hover: var(--bci-gray-100);
-    --slds-c-button-color-border-hover: var(--bci-gray-400);
-    --slds-c-button-text-color: var(--bci-gray-600);
-    --slds-c-button-text-color-hover: var(--bci-gray-800);
-}
-
 /* Active Filters Pills */
 .bci-active-filters {
     background: var(--bci-gray-100);

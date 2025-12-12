@@ -120,6 +120,10 @@ export default class BciListView extends LightningElement {
         }
     }
 
+    handleResetColumnWidths() {
+        this.columns = JSON.parse(JSON.stringify(COLUMNS));
+    }
+
     @track countryOptions = [
         { label: 'Australia', value: 'Australia', isChecked: true },
         { label: 'New Zealand', value: 'New Zealand', isChecked: false },
