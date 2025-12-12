@@ -566,7 +566,6 @@
     flex-direction: column;
     flex: 1;
     min-height: 0;
-    overflow: auto;
 }
 
 /* Round the corners of the table */
