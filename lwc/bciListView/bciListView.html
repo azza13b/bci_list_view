@@ -9,7 +9,7 @@
         </template>
 
         <template if:false={initialLoading}>
-            <!-- Premium Header -->
+            <!-- Compact Header -->
             <header class="bci-header">
                 <div class="bci-header-content">
                     <div class="bci-header-left">
@@ -17,7 +17,7 @@
                             <lightning-icon
                                 icon-name="standard:work_order"
                                 alternative-text="BCI Projects"
-                                size="medium">
+                                size="small">
                             </lightning-icon>
                         </div>
                         <div>
@@ -25,75 +25,79 @@
                             <p class="bci-subtitle">Building & Construction Intelligence</p>
                         </div>
                     </div>
-
-                    <div class="bci-header-actions">
-                        <!-- View Toggle -->
-                        <div class="bci-view-toggle">
-                            <template for:each={groupOptions} for:item="option">
-                                <button
-                                    key={option.value}
-                                    class={option.buttonClass}
-                                    data-value={option.value}
-                                    onclick={handleViewToggleClick}>
-                                    {option.label}
-                                </button>
-                            </template>
-                        </div>
-
-                        <!-- Map Button -->
-                        <button class="bci-header-btn" onclick={navigateToBciMap}>
-                            <lightning-icon icon-name="utility:location" size="x-small" alternative-text="Map"></lightning-icon>
-                            Map View
-                        </button>
-
-                        <!-- Settings Menu -->
-                        <lightning-button-menu
-                            icon-name="utility:settings"
-                            alternative-text="Settings"
-                            menu-alignment="right"
-                            variant="border-filled"
-                            onselect={handleMenuSelect}>
-                            <lightning-menu-item value="resetWidths" label="Reset Column Widths"></lightning-menu-item>
-                        </lightning-button-menu>
-
-                        <!-- Refresh Button -->
-                        <button class="bci-header-btn bci-header-btn-icon" onclick={handleRefresh} title="Refresh">
-                            <lightning-icon icon-name="utility:refresh" size="x-small" alternative-text="Refresh"></lightning-icon>
-                        </button>
-                    </div>
                 </div>
             </header>
 
-            <!-- Stats Bar -->
+            <!-- Stats Bar with Controls -->
             <div class="bci-stats-bar">
-                <div class="bci-stat-item">
-                    <div class="bci-stat-icon projects">
-                        <lightning-icon icon-name="utility:database" size="x-small" alternative-text="Projects"></lightning-icon>
+                <div class="bci-stats-left">
+                    <div class="bci-stat-item">
+                        <div class="bci-stat-icon projects">
+                            <lightning-icon icon-name="utility:database" size="x-small" alternative-text="Projects"></lightning-icon>
+                        </div>
+                        <div class="bci-stat-content">
+                            <span class="bci-stat-value">{formattedTotal}</span>
+                            <span class="bci-stat-label">Projects</span>
+                        </div>
                     </div>
-                    <div class="bci-stat-content">
-                        <span class="bci-stat-value">{formattedTotal}</span>
-                        <span class="bci-stat-label">Projects</span>
+
+                    <div class="bci-stat-item">
+                        <div class="bci-stat-icon value">
+                            <lightning-icon icon-name="utility:moneybag" size="x-small" alternative-text="Value"></lightning-icon>
+                        </div>
+                        <div class="bci-stat-content">
+                            <span class="bci-stat-value">{formattedTotalValue}</span>
+                            <span class="bci-stat-label">Total Value</span>
+                        </div>
+                    </div>
+
+                    <div class="bci-stat-item">
+                        <div class="bci-stat-icon updated">
+                            <lightning-icon icon-name="utility:clock" size="x-small" alternative-text="Updated"></lightning-icon>
+                        </div>
+                        <div class="bci-stat-content">
+                            <span class="bci-stat-value">{filterValues.LastUpdated}</span>
+                            <span class="bci-stat-label">Time Range</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="bci-stat-item">
-                    <div class="bci-stat-icon value">
-                        <lightning-icon icon-name="utility:moneybag" size="x-small" alternative-text="Value"></lightning-icon>
+                <div class="bci-stats-right">
+                    <!-- View Toggle -->
+                    <div class="bci-view-toggle">
+                        <template for:each={groupOptions} for:item="option">
+                            <button
+                                key={option.value}
+                                class={option.buttonClass}
+                                data-value={option.value}
+                                onclick={handleViewToggleClick}>
+                                {option.label}
+                            </button>
+                        </template>
                     </div>
-                    <div class="bci-stat-content">
-                        <span class="bci-stat-value">{formattedTotalValue}</span>
-                        <span class="bci-stat-label">Total Value</span>
-                    </div>
-                </div>
 
-                <div class="bci-stat-item">
-                    <div class="bci-stat-icon updated">
-                        <lightning-icon icon-name="utility:clock" size="x-small" alternative-text="Updated"></lightning-icon>
-                    </div>
-                    <div class="bci-stat-content">
-                        <span class="bci-stat-value">{filterValues.LastUpdated}</span>
-                        <span class="bci-stat-label">Time Range</span>
-                    </div>
+                    <div class="bci-stats-divider"></div>
+
+                    <!-- Map Button -->
+                    <button class="bci-action-btn" onclick={navigateToBciMap}>
+                        <lightning-icon icon-name="utility:location" size="x-small" alternative-text="Map"></lightning-icon>
+                        <span>Map View</span>
+                    </button>
+
+                    <!-- Settings Menu -->
+                    <lightning-button-menu
+                        icon-name="utility:settings"
+                        alternative-text="Settings"
+                        menu-alignment="right"
+                        variant="border-filled"
+                        onselect={handleMenuSelect}>
+                        <lightning-menu-item value="resetWidths" label="Reset Column Widths"></lightning-menu-item>
+                    </lightning-button-menu>
+
+                    <!-- Refresh Button -->
+                    <button class="bci-icon-btn" onclick={handleRefresh} title="Refresh">
+                        <lightning-icon icon-name="utility:refresh" size="x-small" alternative-text="Refresh"></lightning-icon>
+                    </button>
                 </div>
             </div>
 
@@ -367,7 +371,7 @@
 
         <!-- Category Modal -->
         <template if:true={showCategoryModal}>
-            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open" aria-modal="true">
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_medium" aria-modal="true">
                 <div class="slds-modal__container bci-modal-container">
                     <header class="bci-modal-header">
                         <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={toggleCategoryShowMoreModal}>
@@ -377,16 +381,18 @@
                         <h2 class="bci-modal-title">Select Project Categories</h2>
                     </header>
 
-                    <div class="bci-modal-body">
+                    <div class="bci-modal-body bci-modal-body-listbox">
                         <lightning-dual-listbox
                             name="projectType"
                             label="Categories"
                             source-label="Available"
                             selected-label="Selected"
                             data-field="Cat_1_Name"
+                            field-level-help="Select categories to filter projects"
                             options={categoryOptions}
                             value={filterValues.Cat_1_Name}
-                            onchange={handleFilterChange}>
+                            onchange={handleFilterChange}
+                            size="8">
                         </lightning-dual-listbox>
                     </div>
 
@@ -401,7 +407,7 @@
 
         <!-- Council Modal -->
         <template if:true={showCouncilModal}>
-            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open" aria-modal="true">
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_medium" aria-modal="true">
                 <div class="slds-modal__container bci-modal-container">
                     <header class="bci-modal-header">
                         <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={toggleCouncilShowMoreModal}>
@@ -411,16 +417,18 @@
                         <h2 class="bci-modal-title">Select Councils</h2>
                     </header>
 
-                    <div class="bci-modal-body">
+                    <div class="bci-modal-body bci-modal-body-listbox">
                         <lightning-dual-listbox
                             name="Council"
                             label="Councils"
                             source-label="Available"
                             selected-label="Selected"
                             data-field="Council"
+                            field-level-help="Select councils to filter projects"
                             options={councilOptions}
                             value={filterValues.Council}
-                            onchange={handleFilterChange}>
+                            onchange={handleFilterChange}
+                            size="8">
                         </lightning-dual-listbox>
                     </div>
 
