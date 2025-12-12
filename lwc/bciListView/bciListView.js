@@ -478,6 +478,7 @@ export default class BciListView extends LightningElement {
         } else {
             this.filterValues.Cat_1_Name = this.filterValues.Cat_1_Name.filter(item => item !== value);
         }
+        this.handleApplyFilter();
     }
 
     handleProjectStageCheckboxChange(event) {
@@ -494,6 +495,7 @@ export default class BciListView extends LightningElement {
         } else {
             this.filterValues.Project_Stage = this.filterValues.Project_Stage.filter(item => item !== value);
         }
+        this.handleApplyFilter();
     }
 
     handleCouncilCheckboxChange(event) {
@@ -510,6 +512,7 @@ export default class BciListView extends LightningElement {
         } else {
             this.filterValues.Council = this.filterValues.Council.filter(item => item !== value);
         }
+        this.handleApplyFilter();
     }
 
     handleCountryCheckboxChange(event) {

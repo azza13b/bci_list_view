@@ -2,12 +2,12 @@
    BCI Marketing Tool - Premium UI Styles
    ============================================ */
 
-/* CSS Custom Properties - Design Tokens */
+/* CSS Custom Properties - Design Tokens (Stamford Capital Theme) */
 :host {
-    --bci-primary: #0176d3;
-    --bci-primary-dark: #014486;
-    --bci-primary-light: #1b96ff;
-    --bci-accent: #5849bc;
+    --bci-primary: #af1f24;
+    --bci-primary-dark: #8a191d;
+    --bci-primary-light: #c94449;
+    --bci-accent: #7a1518;
     --bci-success: #2e844a;
     --bci-warning: #dd7a01;
     --bci-error: #ea001e;
@@ -137,7 +137,7 @@
 }
 
 .bci-stat-icon.projects {
-    background: linear-gradient(135deg, #e0f3ff 0%, #c7e8ff 100%);
+    background: linear-gradient(135deg, #ffe5e5 0%, #ffd4d4 100%);
     color: var(--bci-primary);
 }
 
@@ -290,7 +290,7 @@
 
 .bci-filter-pill:hover {
     border-color: var(--bci-primary-light);
-    background: #f0f7ff;
+    background: #fff5f5;
 }
 
 .bci-filter-pill-remove {
@@ -335,7 +335,7 @@
    ============================================ */
 .bci-main-content {
     display: flex;
-    height: calc(100vh - 160px);
+    height: calc(100vh - 110px);
     overflow: hidden;
 }
 
@@ -572,7 +572,7 @@
 
 /* Table Row Hover Effects */
 c-my-custom-type-datatable {
-    --slds-c-datatable-row-hover-background: linear-gradient(90deg, #f0f7ff 0%, #e6f2ff 100%);
+    --slds-c-datatable-row-hover-background: linear-gradient(90deg, #fff8f8 0%, #fff0f0 100%);
 }
 
 /* ============================================
