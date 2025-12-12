@@ -105,16 +105,6 @@
                 <!-- Filter Panel -->
                 <template if:true={showFilterPanel}>
                     <aside class="bci-filter-panel">
-                        <div class="bci-filter-header">
-                            <h2 class="bci-filter-title">
-                                <lightning-icon icon-name="utility:filterList" size="x-small" alternative-text="Filters"></lightning-icon>
-                                Filters
-                                <template if:true={activeFilterCount}>
-                                    <span class="bci-filter-count">{activeFilterCount}</span>
-                                </template>
-                            </h2>
-                        </div>
-
                         <div class="bci-filter-body">
                             <!-- Time Range Section -->
                             <div class={timeRangeSectionClass} data-section="timeRange">
@@ -305,15 +295,6 @@
 
                 <!-- Data Table Container -->
                 <div class="bci-table-container">
-                    <!-- Table Header - aligns with Filters header -->
-                    <div class="bci-table-header">
-                        <h2 class="bci-table-title">
-                            <lightning-icon icon-name="utility:table" size="x-small" alternative-text="Projects"></lightning-icon>
-                            Projects
-                        </h2>
-                        <span class="bci-table-subtitle">{formattedTotal} results</span>
-                    </div>
-
                     <div class="bci-table-wrapper">
                         <!-- Loading Overlay -->
                         <template if:true={isLoading}>

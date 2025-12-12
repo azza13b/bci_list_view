@@ -365,35 +365,6 @@
     transform: translateX(-100%);
 }
 
-.bci-filter-header {
-    padding: 1rem 1.25rem;
-    border-bottom: 1px solid var(--bci-gray-200);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-shrink: 0;
-}
-
-.bci-filter-title {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--bci-gray-800);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.bci-filter-count {
-    background: var(--bci-primary);
-    color: white;
-    font-size: 0.6875rem;
-    font-weight: 600;
-    padding: 0.125rem 0.5rem;
-    border-radius: 9999px;
-    min-width: 20px;
-    text-align: center;
-}
-
 .bci-filter-body {
     flex: 1;
     overflow-y: auto;
@@ -579,6 +550,27 @@
     position: relative;
 }
 
+/* Sticky header styling - applied via SLDS hooks */
+.bci-table-wrapper {
+    --slds-c-datatable-header-position: sticky;
+    --slds-c-datatable-header-top: 0;
+    --slds-c-datatable-header-z-index: 1;
+}
+
+/* Fallback: Try to style table header directly if synthetic shadow allows */
+.bci-table-wrapper thead,
+.bci-table-wrapper .slds-table thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: #f8f8f8;
+}
+
+.bci-table-wrapper th,
+.bci-table-wrapper .slds-table th {
+    background: linear-gradient(180deg, #fafafa 0%, #f0f0f0 100%);
+}
+
 /* ============================================
    Data Table Styling (using SLDS hooks)
    ============================================ */
@@ -601,30 +593,6 @@
     --slds-c-datatable-link-text-color-hover: var(--bci-primary-dark);
 }
 
-/* Data Table Header - matches filter panel header */
-.bci-table-header {
-    padding: 1rem 1.25rem;
-    border-bottom: 1px solid var(--bci-gray-200);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-shrink: 0;
-    background: var(--bci-surface);
-}
-
-.bci-table-title {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--bci-gray-800);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.bci-table-subtitle {
-    font-size: 0.8125rem;
-    color: var(--bci-gray-500);
-}
 
 /* Style the datatable container */
 .bci-table-wrapper c-my-custom-type-datatable,
