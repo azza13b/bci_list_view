@@ -305,6 +305,15 @@
 
                 <!-- Data Table Container -->
                 <div class="bci-table-container">
+                    <!-- Table Header - aligns with Filters header -->
+                    <div class="bci-table-header">
+                        <h2 class="bci-table-title">
+                            <lightning-icon icon-name="utility:table" size="x-small" alternative-text="Projects"></lightning-icon>
+                            Projects
+                        </h2>
+                        <span class="bci-table-subtitle">{formattedTotal} results</span>
+                    </div>
+
                     <div class="bci-table-wrapper">
                         <!-- Loading Overlay -->
                         <template if:true={isLoading}>

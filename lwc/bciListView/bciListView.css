@@ -601,12 +601,29 @@
     --slds-c-datatable-link-text-color-hover: var(--bci-primary-dark);
 }
 
-/* Add a top accent border to the table area */
-.bci-table-wrapper::before {
-    content: '';
-    display: block;
-    height: 3px;
-    background: linear-gradient(90deg, var(--bci-primary) 0%, var(--bci-primary-light) 100%);
+/* Data Table Header - matches filter panel header */
+.bci-table-header {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--bci-gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    background: var(--bci-surface);
+}
+
+.bci-table-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--bci-gray-800);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.bci-table-subtitle {
+    font-size: 0.8125rem;
+    color: var(--bci-gray-500);
 }
 
 /* Style the datatable container */
