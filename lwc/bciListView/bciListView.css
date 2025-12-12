@@ -43,8 +43,8 @@
 /* Base Container - Flex column to manage viewport height */
 .bci-container {
     background: var(--bci-background);
-    height: calc(100vh - 110px);
-    max-height: calc(100vh - 110px);
+    height: calc(100vh - 160px);
+    max-height: calc(100vh - 160px);
     overflow: hidden;
     display: flex;
     flex-direction: column;
