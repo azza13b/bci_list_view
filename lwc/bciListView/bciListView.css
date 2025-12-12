@@ -262,12 +262,18 @@
 }
 
 /* Style the settings button menu to match other buttons */
-.bci-stats-right lightning-button-menu {
-    --slds-c-button-neutral-color-background: var(--bci-surface);
-    --slds-c-button-neutral-color-border: var(--bci-gray-300);
-    --slds-c-button-neutral-radius-border: var(--bci-radius-md);
-    --slds-c-button-neutral-color-background-hover: var(--bci-gray-100);
-    --slds-c-button-neutral-color-border-hover: var(--bci-gray-400);
+.bci-settings-menu {
+    display: inline-flex;
+}
+
+.bci-settings-menu lightning-button-menu {
+    --slds-c-button-color-background: var(--bci-surface);
+    --slds-c-button-color-border: var(--bci-gray-300);
+    --slds-c-button-radius-border: var(--bci-radius-md);
+    --slds-c-button-color-background-hover: var(--bci-gray-100);
+    --slds-c-button-color-border-hover: var(--bci-gray-400);
+    --slds-c-button-text-color: var(--bci-gray-600);
+    --slds-c-button-text-color-hover: var(--bci-gray-800);
 }
 
 /* Active Filters Pills */

@@ -66,14 +66,16 @@
                     </button>
 
                     <!-- Settings Menu -->
-                    <lightning-button-menu
-                        icon-name="utility:settings"
-                        alternative-text="Settings"
-                        menu-alignment="right"
-                        variant="border-filled"
-                        onselect={handleMenuSelect}>
-                        <lightning-menu-item value="resetWidths" label="Reset Column Widths"></lightning-menu-item>
-                    </lightning-button-menu>
+                    <div class="bci-settings-menu">
+                        <lightning-button-menu
+                            icon-name="utility:settings"
+                            alternative-text="Settings"
+                            menu-alignment="right"
+                            variant="border"
+                            onselect={handleMenuSelect}>
+                            <lightning-menu-item value="resetWidths" label="Reset Column Widths"></lightning-menu-item>
+                        </lightning-button-menu>
+                    </div>
 
                     <!-- Refresh Button -->
                     <button class="bci-icon-btn" onclick={handleRefresh} title="Refresh">
