@@ -566,6 +566,7 @@
     flex-direction: column;
     flex: 1;
     min-height: 0;
+    --slds-c-datatable-header-cell-padding-block: 1rem;
 }
 
 /* Round the corners of the table */
