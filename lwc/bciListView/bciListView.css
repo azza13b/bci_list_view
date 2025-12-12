@@ -365,35 +365,6 @@
     transform: translateX(-100%);
 }
 
-.bci-filter-header {
-    padding: 1rem 1.25rem;
-    border-bottom: 1px solid var(--bci-gray-200);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-shrink: 0;
-}
-
-.bci-filter-title {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--bci-gray-800);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.bci-filter-count {
-    background: var(--bci-primary);
-    color: white;
-    font-size: 0.6875rem;
-    font-weight: 600;
-    padding: 0.125rem 0.5rem;
-    border-radius: 9999px;
-    min-width: 20px;
-    text-align: center;
-}
-
 .bci-filter-body {
     flex: 1;
     overflow-y: auto;
@@ -561,7 +532,7 @@
 }
 
 /* ============================================
-   Data Table Area
+   Data Table Area - Card Style
    ============================================ */
 .bci-table-container {
     flex: 1;
@@ -569,7 +540,8 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    background: var(--bci-surface);
+    padding: 0.75rem;
+    background: var(--bci-background);
 }
 
 .bci-table-wrapper {
@@ -577,59 +549,22 @@
     min-height: 0;
     overflow: auto;
     position: relative;
-}
-
-/* ============================================
-   Data Table Styling (using SLDS hooks)
-   ============================================ */
-
-/* Style the datatable wrapper */
-.bci-table-wrapper {
-    /* Header styling hooks */
-    --slds-c-datatable-header-color-background: linear-gradient(180deg, #f8f8f8 0%, #f0f0f0 100%);
-    --slds-c-datatable-header-text-color: var(--bci-gray-800);
-    --slds-c-datatable-header-font-weight: 700;
-
-    /* Cell styling hooks */
-    --slds-c-datatable-cell-color-background: #ffffff;
-
-    /* Row hover hooks */
-    --slds-c-datatable-row-hover-color-background: #fff5f5;
-
-    /* Link colors */
-    --slds-c-datatable-link-text-color: var(--bci-primary);
-    --slds-c-datatable-link-text-color-hover: var(--bci-primary-dark);
-}
-
-/* Data Table Header - matches filter panel header */
-.bci-table-header {
-    padding: 1rem 1.25rem;
-    border-bottom: 1px solid var(--bci-gray-200);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-shrink: 0;
     background: var(--bci-surface);
+    border-radius: var(--bci-radius-md);
+    border: 1px solid var(--bci-gray-200);
+    box-shadow: var(--bci-shadow-sm);
 }
 
-.bci-table-title {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--bci-gray-800);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.bci-table-subtitle {
-    font-size: 0.8125rem;
-    color: var(--bci-gray-500);
-}
-
-/* Style the datatable container */
+/* Style the datatable */
 .bci-table-wrapper c-my-custom-type-datatable,
 .bci-table-wrapper lightning-datatable {
     display: block;
+}
+
+/* Round the corners of the table */
+.bci-table-wrapper c-my-custom-type-datatable {
+    border-radius: var(--bci-radius-md);
+    overflow: hidden;
 }
 
 /* ============================================
