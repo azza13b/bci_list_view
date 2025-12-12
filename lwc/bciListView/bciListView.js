@@ -63,10 +63,10 @@ export default class BciListView extends LightningElement {
 
     @track showFilterPanel = true;
 
-    // Accordion section states
+    // Accordion section states - only Time Range open by default
     @track expandedSections = {
         timeRange: true,
-        location: true,
+        location: false,
         details: false,
         viewOptions: false
     };
@@ -194,7 +194,7 @@ export default class BciListView extends LightningElement {
     }
 
     get visiblecouncilOptions() {
-        return this.councilOptions.slice(0, 3);
+        return this.councilOptions.slice(0, 6);
     }
 
     // ============================================
