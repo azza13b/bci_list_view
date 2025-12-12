@@ -595,7 +595,7 @@
 
 
 /* Style the datatable container */
-.bci-table-wrapper c-my-custom-type-datatable,
+.bci-table-wrapper c-bci-list-view-table,
 .bci-table-wrapper lightning-datatable {
     display: block;
 }

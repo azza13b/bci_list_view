@@ -306,7 +306,7 @@
 
                         <!-- Data Table -->
                         <template if:true={hasData}>
-                            <c-my-custom-type-datatable
+                            <c-bci-list-view-table
                                 key-field="Id"
                                 data={bciProjects}
                                 hide-checkbox-column
@@ -317,7 +317,7 @@
                                 sorted-direction={sortDirection}
                                 onclick={handleClick}
                                 onsort={doSorting}>
-                            </c-my-custom-type-datatable>
+                            </c-bci-list-view-table>
                         </template>
 
                         <!-- Empty State -->
