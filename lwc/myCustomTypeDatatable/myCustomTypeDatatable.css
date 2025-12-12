@@ -1,0 +1,28 @@
+/* Sticky header for datatable */
+:host {
+    display: block;
+}
+
+/* Make the table header sticky */
+thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+thead th {
+    background: linear-gradient(180deg, #fafafa 0%, #f0f0f0 100%);
+    border-bottom: 2px solid #d8d8d8;
+}
+
+/* Ensure proper header shadow when scrolling */
+thead::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -4px;
+    height: 4px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.08) 0%, transparent 100%);
+    pointer-events: none;
+}
