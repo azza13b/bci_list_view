@@ -580,82 +580,39 @@
 }
 
 /* ============================================
-   Data Table Styling
+   Data Table Styling (using SLDS hooks)
    ============================================ */
 
-/* Table Container */
-.bci-table-wrapper c-my-custom-type-datatable {
-    border-radius: var(--bci-radius-md);
-    overflow: hidden;
+/* Style the datatable wrapper */
+.bci-table-wrapper {
+    /* Header styling hooks */
+    --slds-c-datatable-header-color-background: linear-gradient(180deg, #f8f8f8 0%, #f0f0f0 100%);
+    --slds-c-datatable-header-text-color: var(--bci-gray-800);
+    --slds-c-datatable-header-font-weight: 700;
+
+    /* Cell styling hooks */
+    --slds-c-datatable-cell-color-background: #ffffff;
+
+    /* Row hover hooks */
+    --slds-c-datatable-row-hover-color-background: #fff5f5;
+
+    /* Link colors */
+    --slds-c-datatable-link-text-color: var(--bci-primary);
+    --slds-c-datatable-link-text-color-hover: var(--bci-primary-dark);
 }
 
-/* Table Header Styling */
-c-my-custom-type-datatable .slds-table thead th,
-c-my-custom-type-datatable thead th {
-    background: linear-gradient(180deg, #f8f8f8 0%, #f0f0f0 100%) !important;
-    border-bottom: 2px solid var(--bci-primary) !important;
-    font-weight: 700 !important;
-    color: var(--bci-gray-800) !important;
-    text-transform: uppercase;
-    font-size: 0.6875rem;
-    letter-spacing: 0.05em;
-    padding: 0.75rem 1rem !important;
+/* Add a top accent border to the table area */
+.bci-table-wrapper::before {
+    content: '';
+    display: block;
+    height: 3px;
+    background: linear-gradient(90deg, var(--bci-primary) 0%, var(--bci-primary-light) 100%);
 }
 
-/* Alternating Row Colors (Zebra Striping) */
-c-my-custom-type-datatable tbody tr:nth-child(even) td {
-    background-color: #fafafa !important;
-}
-
-c-my-custom-type-datatable tbody tr:nth-child(odd) td {
-    background-color: #ffffff !important;
-}
-
-/* Table Row Hover Effects */
-c-my-custom-type-datatable tbody tr:hover td {
-    background: linear-gradient(90deg, #fff5f5 0%, #ffeded 100%) !important;
-}
-
-/* Add left accent border on hover */
-c-my-custom-type-datatable tbody tr:hover td:first-child {
-    box-shadow: inset 3px 0 0 0 var(--bci-primary) !important;
-}
-
-/* Table Cell Styling */
-c-my-custom-type-datatable tbody td {
-    padding: 0.625rem 1rem !important;
-    border-bottom: 1px solid var(--bci-gray-200) !important;
-    font-size: 0.8125rem;
-    color: var(--bci-gray-700);
-    transition: all var(--bci-transition-fast);
-}
-
-/* Link styling in table */
-c-my-custom-type-datatable a {
-    color: var(--bci-primary) !important;
-    font-weight: 500;
-    text-decoration: none;
-}
-
-c-my-custom-type-datatable a:hover {
-    color: var(--bci-primary-dark) !important;
-    text-decoration: underline;
-}
-
-/* Sort icon styling */
-c-my-custom-type-datatable .slds-icon_x-small {
-    fill: var(--bci-gray-500);
-}
-
-/* Remove default SLDS shadows */
-c-my-custom-type-datatable .slds-table_bordered {
-    border: none !important;
-}
-
-/* Scrollbar inside table */
-c-my-custom-type-datatable .slds-scrollable_y {
-    scrollbar-width: thin;
-    scrollbar-color: var(--bci-gray-300) var(--bci-gray-100);
+/* Style the datatable container */
+.bci-table-wrapper c-my-custom-type-datatable,
+.bci-table-wrapper lightning-datatable {
+    display: block;
 }
 
 /* ============================================
